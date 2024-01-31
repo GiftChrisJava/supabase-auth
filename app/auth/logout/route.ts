@@ -7,23 +7,11 @@ export async function POST(req: NextRequest) {
 
   const cookieStore = cookies();
 
-  const formData = await req.formData();
-  const email = String(formData.get("email"));
-  const password = String(formData.get("password"));
-
-  console.log(email, password);
-
   const supabase = createRouteHandlerClient({
     cookies: () => cookieStore,
   });
 
-  const response = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      emailRedirectTo: `${url.origin}/auth/callback`,
-    },
-  });
+  await supabase.auth.signOut();
 
   return NextResponse.redirect(url.origin, {
     status: 301,

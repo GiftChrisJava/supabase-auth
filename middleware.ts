@@ -10,11 +10,11 @@ export async function middleware(req: NextRequest) {
 
   const {
     data: { session },
+    error,
   } = await supabase.auth.getSession();
 
-  console.log(session);
-
-  if (!Session) {
+  // rdirect to login if there is no session
+  if (!session) {
     return NextResponse.rewrite(new URL("/login", req.url));
   }
 
