@@ -53,7 +53,18 @@
 // for sign up
 export default function Login() {
   return (
-    <form action="/auth/signup" method="post">
+    // <form action="/auth/signup" method="post">
+    //   <label htmlFor="email">Email</label>
+    //   <input type="text" name="email" className="font-bold text-purple-700" />
+    //   <label htmlFor="password">Password</label>
+    //   <input
+    //     type="password"
+    //     name="password"
+    //     className="font-bold text-purple-700"
+    //   />
+    //   <button>Sign Up</button>
+    // </form>
+    <form action="/auth/login" method="post">
       <label htmlFor="email">Email</label>
       <input type="text" name="email" className="font-bold text-purple-700" />
       <label htmlFor="password">Password</label>
@@ -62,7 +73,7 @@ export default function Login() {
         name="password"
         className="font-bold text-purple-700"
       />
-      <button>Sign Up</button>
+      <button>Sign In</button>
     </form>
   );
 }
