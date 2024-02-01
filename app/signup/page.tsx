@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 function Page() {
@@ -20,17 +20,16 @@ function Page() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // sends a signIn request to supabase, authenticating the user
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
+    // sends a sign up request to supabase email provider
+    await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `${window.location.origin}/login`,
+      },
     });
 
-    console.log(data);
-
-    // Here you can write code to give visual feedback to the user
-    // based on the success or failure of the sign-in procedure.
-    // E.g. Toast notifications.
+    console.log("Submitted:", { email, password });
   };
 
   return (
